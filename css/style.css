@@ -11,15 +11,16 @@ body {
   background: rgb(70, 10, 10);
   padding: 5%;
   color: rgb(255,255,255);
+  --search-size: 250px;
 }
 
 .heading-search {
   text-align: center;
-  margin-top: 10vh;
+  margin-top: 5vh;
 }
 .heading-search > h1 {
   font-size: 4rem;
-  font-family: 'Tilt Prism', cursive;
+  font-family: 'Tilt Prism', Georgia, Times, 'Times New Roman', serif;
   font-weight: 100;
 }
 .heading-search > input {
@@ -31,7 +32,8 @@ body {
   border-radius: 1rem;
 }
 .heading-search > button {
-  margin: 1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 2.5rem;
   border: 3px solid yellow;
   background-color: rgb(90, 10, 10);
   color: white;
@@ -48,27 +50,54 @@ body {
 
 #results {
   width: 100%;
-  height: 39.5vh;
+  height: calc(var(--search-size) + 4rem);
   border: 1px solid yellow;
   border-radius: 1rem;
-  padding: 20px;
+  padding: 1rem 0;
   overflow: auto;
-  position: relative;
   display: flex;
   flex-wrap: nowrap;
 }
 #results button {
   display: block;
-  height: 60px;
+  height: var(--search-size);
+  width: var(--search-size);
+  margin: 0 1rem;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  position: relative;
+}
+#results button:hover {
+  box-shadow: 0 0 20px black;
 }
 #results img {
-  display: block;
+  display: inline-block;
+  vertical-align: top;
   margin: 0 auto;
-  width: 40px;
-  height: 40px;
+  width: var(--search-size);
+  height: var(--search-size);
+}
+#results span {
+  color: white;
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-weight: bold;
 }
 
-
+article {
+  margin-top: 5vh;
+  position: relative;
+}
+article img {
+  float: right;
+  height: 25vh;
+  margin: 0 0 1rem 1rem;
+}
+article p {
+  font-size: 1.5rem;
+}
 
 @keyframes slide {
   from {
@@ -97,18 +126,3 @@ body {
   background: linear-gradient(to right, transparent, rgb(70,10,10));
 }
 */
-
-
-.selection {
-  margin-top: 5vh;
-  position: relative;
-}
-.selection img {
-  /* position: absolute; */
-  float: right;
-  height: 25vh;
-  margin: 0 0 1rem 1rem;
-}
-.selection p {
-  font-size: 1.5rem;
-}
