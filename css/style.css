@@ -78,12 +78,14 @@ body {
   margin: 0 auto;
   width: var(--search-size);
   height: var(--search-size);
+  pointer-events: none;
 }
 #results span {
   color: white;
   display: inline-block;
   margin-top: 0.5rem;
   font-weight: bold;
+  pointer-events: none;
 }
 
 article {

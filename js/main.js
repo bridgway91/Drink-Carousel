@@ -1,15 +1,7 @@
 //The user will enter a cocktail. Get a cocktail name, photo, and instructions and place them in the DOM
 document.querySelector('#search').addEventListener('click', findDrink);
 document.querySelector('body').addEventListener('click', pickDrink);
-/*
-// document.querySelector('body').addEventListener('click', function(event) {
-//     if (event.target.tagName.toLowerCase() === 'li') {
-//       // do your action on your 'li' or whatever it is you're listening for
-//       console.log(event.target);
-//     }
-// });
-*/
-
+let drinklist;
 
 function findDrink() {
     let drink = document.querySelector('input').value;
@@ -18,7 +10,7 @@ function findDrink() {
     fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s='+drink)
         .then(res => res.json())
         .then(data => {
-            let drinklist = data.drinks;
+            drinklist = data.drinks;
             console.log(drinklist)
             carousel.innerHTML = '';
             drinklist.forEach((el,index) => {
@@ -45,7 +37,21 @@ function findDrink() {
 }
 
 function pickDrink() {
-    console.log(event.target.tagName);
+    let selection_name = document.querySelector('article h2');
+    let selection_pic = document.querySelector('article img');
+    let selection_instructions = document.querySelector('article p');
+
+    if (event.target.id != 'search' && event.target.tagName == 'BUTTON') {
+        selection_name.innerHTML = '';
+        selection_pic.src = '';
+        selection_instructions.innerHTML = '';
+        
+        let drinkIndex = Number(event.target.id.slice(-1));
+        selection_drink = drinklist[drinkIndex];
+        selection_name.innerHTML = selection_drink.strDrink;
+        selection_pic.src = selection_drink.strDrinkThumb;
+        selection_instructions.innerHTML = selection_drink.strInstructions;
+    }
 }
 /*
 hw:
