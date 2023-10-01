@@ -23,7 +23,9 @@ function findDrink() {
                 );
             });
             scroller.setAttribute('data-animated', false);
-            addAnimation();
+            if (scroller.clientWidth < scroller.scrollWidth) {
+                addAnimation();
+            };
         })
         .catch(err => {
             console.log(`error ${err}`)

@@ -58,6 +58,7 @@ body {
 }
 .container { /* scroller_inner */
   display: flex;
+  justify-content: center;
 }
 .results button {
   display: block;
