@@ -2,16 +2,17 @@
 document.querySelector('#search').addEventListener('click', findDrink);
 document.querySelector('body').addEventListener('click', pickDrink);
 let drinklist;
+let scroller = document.querySelector('.results');
+let carousel = document.querySelector('.container');
+
 
 function findDrink() {
     let drink = document.querySelector('input').value;
-    let carousel = document.querySelector('#results');
 
     fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s='+drink)
         .then(res => res.json())
         .then(data => {
             drinklist = data.drinks;
-            console.log(drinklist)
             carousel.innerHTML = '';
             drinklist.forEach((el,index) => {
                 carousel.innerHTML += (
@@ -21,15 +22,8 @@ function findDrink() {
 				    </button>`
                 );
             });
-            // document.querySelector(`#results`).button.addEventListener('click', pickDrink);
-            /* concerning cloning nodes for carousel
-            // let copy = document.querySelector('ul').cloneNode(false);
-            // document.querySelector('ul').appendChild(copy);
-
-            // document.querySelector('h2').innerText = target.strDrink
-            // document.querySelector('img').src = target.strDrinkThumb
-            // document.querySelector('h3').innerText = target.strInstructions
-            */
+            scroller.setAttribute('data-animated', false);
+            addAnimation();
         })
         .catch(err => {
             console.log(`error ${err}`)
@@ -53,6 +47,19 @@ function pickDrink() {
         selection_instructions.innerHTML = selection_drink.strInstructions;
     }
 }
+
+function addAnimation() {
+    scroller.setAttribute('data-animated', true);
+    
+    let carouselContent = Array.from(carousel.children);
+
+    carouselContent.forEach(el => {
+        let duplicatedItem = el.cloneNode(true);
+        duplicatedItem.setAttribute('aria-hidden', true);
+        carousel.appendChild(duplicatedItem);
+    })
+}
+
 /*
 hw:
 1- dont use template literal then try to make work w/ spaces in drink name -- DONE
