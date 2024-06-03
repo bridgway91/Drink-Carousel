@@ -68,3 +68,13 @@ hw:
 2- get it to cycle drinks when there are multiple that come from search
     - try working in .setInterval()
 */
+
+/*
+what I want to add...
+- DONE: change ugly background + general color scheme (try faded bartop like in master)
+- get rid of box around carousel
+    - have header + search start center page, then animate upward after a search is done -> fade in search results
+- while maintaining auto-scroll, have a "center" page with options on either side smaller and blurred out slightly
+- clicking on option should create content below and animate-drag the page down to look at it
+    - as many details as possible in details page
+*/

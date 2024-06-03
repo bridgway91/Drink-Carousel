@@ -2,11 +2,62 @@
 /* CSS
 /*******************************************/
 
-/* Box Model Hack */
 *{
+  margin:0;
+  padding:0;
   box-sizing: border-box;
 }
-
+body{
+  width:100vw;
+  height:100dvh;
+  background-image: url("bartop.jpg");
+  background-size: cover;
+  position: relative;
+}
+/*******************************************/
+header {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  padding: 1rem 5rem;
+  border: 5px solid black;
+  border-radius: 5rem;
+  background-color: rgba(0, 0, 0, 0.65);
+  display: flex;
+  flex-direction: column;
+}
+header > h1 {
+  font-size: 4rem;
+  font-family: 'Sedan SC', Georgia, Times, 'Times New Roman', serif;
+  font-weight: bolder;
+  color: white;
+  text-align: center;
+}
+header > input {
+  display: block;
+  font-size: 2rem;
+  width: 100%;
+  border: 3px solid black;
+  border-radius: 1rem;
+}
+header > button {
+  margin: 2rem auto;
+  border: 3px solid black;
+  background-color: rgba(60,20,20,0.9);
+  font-family: Times, 'Times New Roman', serif;
+  color: white;
+  width: 10rem;
+  height: 5rem;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+header > button:active {
+  background-color: black;
+}
+/*
 body {
   background: rgb(70, 10, 10);
   padding: 5%;
@@ -48,7 +99,7 @@ body {
   background-color: black;
 }
 
-.results { /* scroller */
+.results { 
   width: 100%;
   height: calc(var(--search-size) + 4rem);
   border: 3px solid yellow;
@@ -56,7 +107,7 @@ body {
   padding: 1rem 0;
   overflow: hidden;
 }
-.container { /* scroller_inner */
+.container {
   display: flex;
   justify-content: center;
 }
@@ -119,3 +170,4 @@ article p {
     transform: translateX(-50%);
   }
 }
+*/
