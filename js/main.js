@@ -77,4 +77,7 @@ what I want to add...
 - while maintaining auto-scroll, have a "center" page with options on either side smaller and blurred out slightly
 - clicking on option should create content below and animate-drag the page down to look at it
     - as many details as possible in details page
+
+    https://www.youtube.com/watch?v=4prVdA7_6u0
+    https://www.youtube.com/watch?v=Nloq6uzF8RQ
 */

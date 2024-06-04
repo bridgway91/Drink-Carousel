@@ -33,6 +33,7 @@ header > h1 {
   font-weight: bolder;
   color: white;
   text-align: center;
+  text-shadow: 3px 3px 0 rgba(60,20,20,1);
 }
 header > input {
   display: block;
@@ -45,6 +46,7 @@ header > button {
   margin: 2rem auto;
   border: 3px solid black;
   background-color: rgba(60,20,20,0.9);
+  text-shadow: 2px 2px 2px black;
   font-family: Times, 'Times New Roman', serif;
   color: white;
   width: 10rem;
