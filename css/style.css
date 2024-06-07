@@ -13,19 +13,24 @@ body{
   background-image: url("bartop.jpg");
   background-size: cover;
   position: relative;
+  --search-size: 250px;
 }
+
 /*******************************************/
+/*******************************************/
+
 header {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  padding: 1rem 5rem;
   border: 5px solid black;
   border-radius: 5rem;
   background-color: rgba(0, 0, 0, 0.65);
   display: flex;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
   flex-direction: column;
+  padding: 1rem 5rem;
+  align-items: center;
 }
 header > h1 {
   font-size: 4rem;
@@ -41,6 +46,7 @@ header > input {
   width: 100%;
   border: 3px solid black;
   border-radius: 1rem;
+  padding: 5px;
 }
 header > button {
   margin: 2rem auto;
@@ -59,48 +65,103 @@ header > button {
 header > button:active {
   background-color: black;
 }
-/*
-body {
-  background: rgb(70, 10, 10);
-  padding: 5%;
-  color: rgb(255,255,255);
-  --search-size: 250px;
+.aside {
+  animation: shrink 1s ease-in-out forwards;
+}
+.aside h1 {
+  animation: shrinkh1 1s ease-in-out forwards;
+}
+.aside button {
+  animation: shrinkbutton 1s ease-in-out forwards;
+}
+@keyframes shrink {
+  100% {
+    left: 50%;
+    top: 0%;
+    transform: translate(-50%,0);
+    flex-direction: row;
+    gap: 1rem;
+    padding: 0 5rem;
+    height: 8rem;
+  }
+}
+@keyframes shrinkh1 {
+  100% {
+    font-size: 2rem;
+  }
+}
+@keyframes shrinkbutton {
+  100% {
+    font-size: 1.25rem;
+    margin: 0;
+  }
 }
 
-.heading-search {
-  text-align: center;
-  margin-top: 5vh;
+/*******************************************/
+/*******************************************/
+
+main {
+  border: 2px solid magenta;
+  position: absolute;
+  top: 10rem;
+  left: 5%;
+  width: 90%;
+  height: 75dvh;
+  /* opacity: 0%; */
+
 }
-.heading-search > h1 {
-  font-size: 4rem;
-  font-family: 'Tilt Prism', Georgia, Times, 'Times New Roman', serif;
-  font-weight: 100;
+.results { 
+  width: 100%;
+  height: calc(var(--search-size) + 4rem);
+  padding: 1rem 0;
+  overflow: hidden;
 }
-.heading-search > input {
-  margin: 0 auto;
+.container {
+  display: flex;
+  justify-content: center;
+  border: 2px solid green;
+}
+.results button {
   display: block;
-  text-align: center;
-  font-size: 2rem;
-  border: 1px solid yellow;
-  border-radius: 1rem;
-}
-.heading-search > button {
-  margin-top: 1.5rem;
-  margin-bottom: 2.5rem;
-  border: 3px solid yellow;
-  background-color: rgb(90, 10, 10);
-  color: white;
-  width: 10rem;
-  height: 5rem;
-  border-radius: 50%;
-  font-size: 1.5rem;
-  font-weight: 700;
+  height: var(--search-size);
+  width: var(--search-size);
+  margin: 0 1rem;
+  padding: 0;
+  background-color: transparent;
+  border: none;
   cursor: pointer;
+  position: relative;
 }
-.heading-search > button:active {
-  background-color: black;
+.results button:hover {
+  box-shadow: 0 0 20px black;
 }
-
+.results img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 auto;
+  width: var(--search-size);
+  height: var(--search-size);
+  pointer-events: none;
+}
+.results span {
+  color: white;
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-weight: bold;
+  pointer-events: none;
+}
+.results[data-animated=true] {
+  -webkit-mask: linear-gradient(90deg, white, transparent .1%, white 15%, white 85%, transparent 99.9%, white);
+  mask: linear-gradient(90deg, white, transparent .1%, white 15%, white 85%, transparent 99.9%, white);
+}
+.results[data-animated=true] .container {
+  width: fit-content;
+  animation: scroll 100s linear infinite;
+}
+.results[data-animated=true]:hover .container {
+  animation-play-state: paused;
+}
+/* 
 .results { 
   width: 100%;
   height: calc(var(--search-size) + 4rem);
