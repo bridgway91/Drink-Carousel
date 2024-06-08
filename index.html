@@ -16,7 +16,7 @@
 		<link rel="stylesheet" href="css/style.css">
 	</head>
 	<body>
-		<header class="aside">
+		<header class="">
 			<h1>Mixed Drinks</h1>
 			<input type="text" name="" value="" placeholder="">
 			<button id="search" type="button">Search</button>
@@ -29,10 +29,22 @@
 			</section>
 		</main>
 
-		<article class=""><!--show-drink-->
-			<h2></h2>
-			<img>
-			<p></p>
+		<article id="selectedDrink" class=""><!--show-drink-->
+			<section class="left">
+				<h2 id="selectedName"></h2>
+				<div>
+					<span id="alch"></span>
+					<span id="glass"></span>
+				</div>
+				<ul id="ingredients">
+				</ul>
+			</section>
+			<section class="right">
+				<img id="selectedImage">
+			</section>
+			<section class="bottomn">
+				<p id="instructions"></p>
+			</section>
 		</article>
 
 		<script type="text/javascript" src="js/main.js"></script>
