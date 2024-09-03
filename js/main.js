@@ -1,24 +1,37 @@
 //The user will enter a cocktail. Get a cocktail name, photo, and instructions and place them in the DOM
+
+// fetches based on input field on pressing search button
 document.querySelector('#search').addEventListener('click', findDrink);
+// tracks all clicks on page, only activating when pressing a 'drink' button that appears after search
 document.querySelector('body').addEventListener('click', pickDrink);
+
+// drink object to hold info from search
 let drinklist;
-let searchBlock = document.querySelector('header');
-let resultsBlock = document.querySelector('main');
-let pickedBlock = document.querySelector('article');
-let scroller = document.querySelector('.results');
-let carousel = document.querySelector('.container');
+// location variables
+const searchBlock = document.querySelector('header');
+const resultsBlock = document.querySelector('main');
+const selection = document.querySelector('article');
+const scroller = document.querySelector('.results');
+const carousel = document.querySelector('.container');
+// location variables within article
+const selection_name = document.querySelector('#selectedName')
+const is_alcoholic = document.querySelector('#alch')
+const glass_used = document.querySelector('#glass')
+const ingredients = document.querySelector('#ingredients')
+const selection_pic = document.querySelector('#selectedImage')
+const selection_instructions = document.querySelector('#instructions')
 
 
-async function findDrink() {
+async function findDrink() { // on search-button click
     let drink = document.querySelector('input').value;
 
     fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s='+drink)
         .then(res => res.json())
         .then(data => {
-            drinklist = data.drinks;
-            console.log(drinklist)
-            carousel.innerHTML = '';
-            if (drinklist.length > 0) {
+            drinklist = data.drinks; // array of objects [{.},{.},{.},{.},...]
+            console.log(drinklist) // DELETE WHEN PROJECT COMPLETE
+            carousel.innerHTML = ''; // clears anything in carousel
+            if (drinklist) { // if drinks are found, adds them to carousel
                 searchBlock.classList.add('setTop')
                 resultsBlock.classList.add('show')
                 drinklist.forEach((el,index) => {
@@ -30,8 +43,8 @@ async function findDrink() {
                     );
                 })
             };            
-            scroller.setAttribute('data-animated', false);
-            if (scroller.clientWidth < scroller.scrollWidth) {
+            scroller.setAttribute('data-animated', false); // stops scrolling
+            if (scroller.clientWidth < scroller.scrollWidth) { // starts scrolling anim if scroller would exceed a certain width
                 addAnimation();
             };
         })
@@ -40,18 +53,10 @@ async function findDrink() {
         });
 }
 
-function pickDrink() {
-    let selection = document.querySelector('#selectedDrink')
-    let selection_name = document.querySelector('#selectedName')
-    let is_alcoholic = document.querySelector('#alch')
-    let glass_used = document.querySelector('#glass')
-    let ingredients = document.querySelector('#ingredients')
-    let selection_pic = document.querySelector('#selectedImage')
-    let selection_instructions = document.querySelector('#instructions')
-
+function pickDrink() { // on any click if target is button but not search
     if (event.target.id != 'search' && event.target.tagName == 'BUTTON') {
-        let drinkIndex = Number(event.target.id.slice(-1));
-        selection_drink = drinklist[drinkIndex];
+        let drinkIndex = Number(event.target.id.split('-')[1]);
+        let selection_drink = drinklist[drinkIndex]; // all info on clicked drink
         // name
         selection_name.innerHTML = selection_drink.strDrink
         // alcoholic?
@@ -66,18 +71,16 @@ function pickDrink() {
         // ingredients
         let items = [], amount = []
         for (let key in selection_drink) {
-            if (key.includes('Ingredient') && selection_drink[key] != null) {
-                items.push(selection_drink[key])
-            }
-            if (key.includes('Measure') && selection_drink[key] != null) {
-                amount.push(selection_drink[key])
-            }
+            if (key.includes('Ingredient')) items.push(selection_drink[key])
+            if (key.includes('Measure')) amount.push(selection_drink[key])
         }
         console.log(items, amount)
         // picture
         selection_pic.src = selection_drink.strDrinkThumb
         // instructions
         selection_instructions.innerHTML = selection_drink.strInstructions
+
+        selection.scrollIntoView({behavior: "smooth"})
     }
 }
 
