@@ -60,26 +60,34 @@ function pickDrink() { // on any click if target is button but not search
         // name
         selection_name.innerHTML = selection_drink.strDrink
         // alcoholic?
-        is_alcoholic.innerHTML = `- ${selection_drink.strAlcoholic}`
+        is_alcoholic.innerHTML = `${selection_drink.strAlcoholic}`
         if(is_alcoholic.innerHTML.toLowerCase() == 'alcoholic') {
             is_alcoholic.style.color = 'green'
         } else {
             is_alcoholic.style.color = 'red'
         }
         // glass used
-        glass_used.innerHTML = `- ${selection_drink.strGlass}`
+        glass_used.innerHTML = `Glass: ${selection_drink.strGlass}`
         // ingredients
+        ingredients.innerHTML = ''
         let items = [], amount = []
         for (let key in selection_drink) {
             if (key.includes('Ingredient')) items.push(selection_drink[key])
             if (key.includes('Measure')) amount.push(selection_drink[key])
         }
         console.log(items, amount)
+        const ingred = amount.map((e,i)=>(e?e.endsWith(' ')?e:e+' ':'')+items[i]).filter(e=>e && e!='null')
+        console.log(ingred)
+        for (let ing of ingred) {
+            ingredients.innerHTML += `<li>${ing}</li>`
+        }
+        console.log(ingredients)
         // picture
         selection_pic.src = selection_drink.strDrinkThumb
         // instructions
         selection_instructions.innerHTML = selection_drink.strInstructions
 
+        selection.style.display = 'flex'
         selection.scrollIntoView({behavior: "smooth"})
     }
 }
