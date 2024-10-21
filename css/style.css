@@ -14,6 +14,7 @@ body{
   background-size: cover;
   position: relative;
   --search-size: 40dvh;
+  --title: 4rem;
 }
 
 /*******************************************/
@@ -35,7 +36,7 @@ header {
   align-items: center;
 }
 header > h1 {
-  font-size: 4rem;
+  font-size: var(--title);
   font-family: 'Sedan SC', Georgia, Times, 'Times New Roman', serif;
   font-weight: bolder;
   color: white;
@@ -44,8 +45,8 @@ header > h1 {
 }
 header > input {
   display: block;
-  font-size: 2rem;
-  width: 100%;
+  font-size: calc(var(--title) / 2);
+  width: 500px;
   border: 3px solid black;
   border-radius: 1rem;
   padding: 5px;
@@ -90,7 +91,7 @@ header > button:active {
     flex-direction: row;
     gap: 1rem;
     padding: 0 5rem;
-    height: 8rem;
+    height: calc(var(--title) * 2);
   }
 }
 @keyframes shrinkh1 {
@@ -101,7 +102,7 @@ header > button:active {
     opacity: 0;
   }
   100% {
-    font-size: 2rem;
+    font-size: calc(var(--title) / 2);
   }
 }
 @keyframes shrinkbutton {
@@ -112,7 +113,7 @@ header > button:active {
     opacity: 0;
   }
   100% {
-    font-size: 1.25rem;
+    /* font-size: 1.25rem; */
     margin: 0;
   }
 }
@@ -208,11 +209,10 @@ main {
 
 /*******************************************/
 /* ^ results
-/* v pick-a-drink
+/* v selected-drink
 /*******************************************/
 
 article {
-  border-top: 5px solid black;
   position: absolute;
   top: 100%;
   height: 100dvh;
@@ -260,29 +260,38 @@ article .bottom {
   flex-basis: 100%;
 }
 
-/* 
-article {
-  margin-top: 5vh;
-  position: relative;
-}
-article img {
-  float: right;
-  height: 25vh;
-  margin: 0 0 1rem 1rem;
-}
-article p {
-  font-size: 1.5rem;
-}
-*/
+/*******************************************/
+/* ^ selected-drink
+/* v media-queries
+/*******************************************/
 
-/*
-info in api...
-- alcoholic?
-- drink name
-- drink thumbnail
-- glass used
-- ingredient list
-- instructions (in multiple languages)
-- measurements of ingredients
-- possible video
-*/
+@media (min-width: 2000px) {
+  article > * {
+    font-size: 2.5rem;
+  }
+  article h2 {
+    font-size: 5rem;
+  }
+  article ul {
+    padding-left: 2rem;
+  }
+}
+
+@media (max-width: 1100px) {
+  article div {
+    flex-direction: column;
+  }
+  article .left, article .right {
+    height: 50dvh;
+  }
+  article {
+    align-content: center;
+    gap: 2rem;
+  }
+}
+
+@media (min-width: 200px) {
+  .results span {
+    font-size: 10rem;
+  }
+}

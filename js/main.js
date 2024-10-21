@@ -75,13 +75,11 @@ function pickDrink() { // on any click if target is button but not search
             if (key.includes('Ingredient')) items.push(selection_drink[key])
             if (key.includes('Measure')) amount.push(selection_drink[key])
         }
-        console.log(items, amount)
+        // gets the amount of each ingredient and combines it to 1 variable for easy insert
         const ingred = amount.map((e,i)=>(e?e.endsWith(' ')?e:e+' ':'')+items[i]).filter(e=>e && e!='null')
-        console.log(ingred)
         for (let ing of ingred) {
             ingredients.innerHTML += `<li>${ing}</li>`
         }
-        console.log(ingredients)
         // picture
         selection_pic.src = selection_drink.strDrinkThumb
         // instructions
@@ -103,17 +101,3 @@ function addAnimation() {
         carousel.appendChild(duplicatedItem);
     })
 }
-
-/*
-hw:
-1- dont use template literal then try to make work w/ spaces in drink name -- DONE
-2- get it to cycle drinks when there are multiple that come from search
-    - try working in .setInterval()
-*/
-
-/*
-what I want to add...
-- while maintaining auto-scroll, have a "center" page with options on either side smaller and blurred out slightly
-- clicking on option should create content below and animate-drag the page down to look at it
-    - as many details as possible in details page
-*/
